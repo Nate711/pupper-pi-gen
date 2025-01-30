@@ -1,5 +1,23 @@
 # pi-gen
 
+## Initial run
+`PRESERVE_CONTAINER=1 CONTINUE=1 CLEAN=1 ./build-docker.sh -c config`
+
+`PRESERVE_CONTAINER=1`: Don't delete the docker container after building. This lets you make quick changes after building the whole thing once.
+
+`CONTINUE=1`: Continue using your container.
+
+`CLEAN=1`: IDK
+
+## Subsequent development runs
+Run `./add_skips.sh` to add files to stages0-4 to tell the builder not to rerun those stages.
+
+Run `PRESERVE_CONTAINER=1 CONTINUE=1 CLEAN=1 ./build-docker.sh -c config` to only build our stage5 and up.
+
+If you want to remove the skip files, run `./remove_skips.sh` so you can build the whole image fresh.
+
+## Overview
+
 Tool used to create Raspberry Pi OS images, and custom images based on Raspberry Pi OS,
 which was in turn derived from the Raspbian project.
 

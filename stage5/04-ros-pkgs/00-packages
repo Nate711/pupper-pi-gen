@@ -1,3 +1,4 @@
 libcamera-dev
 nlohmann-json3-dev
 libwebsocketpp-dev
+rapidjson-dev

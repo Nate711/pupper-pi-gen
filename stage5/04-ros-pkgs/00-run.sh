@@ -5,14 +5,15 @@ pip install typeguard --break-system-packages
 pip uninstall em
 pip install empy==3.3.4 --break-system-packages
 
-mkdir /home/$FIRST_USER_NAME/pupperv3-monorepo/ros2_ws/src/common
+mkdir -p /home/$FIRST_USER_NAME/pupperv3-monorepo/ros2_ws/src/common
 cd /home/$FIRST_USER_NAME/pupperv3-monorepo/ros2_ws/src/common
 
+# Define an array of repositories with optional branches
 repos=(
     "https://github.com/pal-robotics/backward_ros.git"
     "https://github.com/PickNikRobotics/RSL.git"
     "https://github.com/PickNikRobotics/generate_parameter_library.git"
-    "https://github.com/ros-controls/realtime_tools.git"
+    "https://github.com/ros-controls/realtime_tools.git -b jazzy"
     "https://github.com/ros-controls/control_msgs.git"
     "https://github.com/ros/diagnostics.git"
     "https://github.com/ros2/teleop_twist_joy.git"
@@ -28,7 +29,20 @@ repos=(
     "https://github.com/ros2/message_filters.git -b jazzy"
 )
 
-for repo in "${repos[@]}"; do
-    git clone $repo --recurse-submodules
+# Clone or update each repository
+for repo in "\${repos[@]}"; do
+    read -r url branch <<< "\$repo"
+    folder=\$(basename "\$url" .git)  # Extract folder name
+
+    if [ -d "\$folder" ]; then
+        echo "Updating existing repository: \$folder"
+        pushd "\$folder" > /dev/null
+        git checkout \${branch#-b }
+        git pull --recurse-submodules
+        popd > /dev/null
+    else
+        echo "Cloning new repository: \$url"
+        git clone --recurse-submodules \$url \$branch
+    fi
 done
 EOF

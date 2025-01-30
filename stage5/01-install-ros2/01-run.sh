@@ -2,7 +2,7 @@
 
 on_chroot << EOF
 apt update
-wget https://s3.ap-northeast-1.wasabisys.com/download-raw/dpkg/ros2-desktop/debian/bookworm/ros-jazzy-desktop-0.3.2_20240525_arm64.deb
+wget -q https://s3.ap-northeast-1.wasabisys.com/download-raw/dpkg/ros2-desktop/debian/bookworm/ros-jazzy-desktop-0.3.2_20240525_arm64.deb
 apt install -y ./ros-jazzy-desktop-0.3.2_20240525_arm64.deb
 rm -f /usr/lib/python3.*/EXTERNALLY-MANAGED
 pip install vcstool colcon-common-extensions --break-system-packages
