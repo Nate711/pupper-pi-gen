@@ -1,0 +1,7 @@
+bluez
+portaudio19-dev
+python3-pyaudio
+alsa-utils
+i2c-tools
+libgpiod-dev
+python3-libgpiod

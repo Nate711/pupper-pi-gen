@@ -1,0 +1,4 @@
+avahi-daemon
+net-tools
+openssh-server
+curl
