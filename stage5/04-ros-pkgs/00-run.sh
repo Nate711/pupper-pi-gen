@@ -1,3 +1,5 @@
+#!/bin/bash -e
+
 on_chroot << EOF
 pip install typeguard --break-system-packages
 pip uninstall em

@@ -1,3 +1,5 @@
+#!/bin/bash -e
+
 on_chroot << EOF
 cd /home/$FIRST_USER_NAME/
 git clone https://github.com/Nate711/pupperv3-monorepo.git --recurse-submodules
